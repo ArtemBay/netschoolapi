@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 from hashlib import md5
 from io import BytesIO
 from typing import Optional, Dict, List, Union
@@ -283,7 +283,7 @@ class NetSchoolAPI:
                 self._wrapped_client.client.build_request(
                     method="POST",
                     url='auth/logout',
-                    data={'at': self._access_token}
+                    data={'at': self._access_token, 'VER': datetime.timestamp(datetime.now())}
                 )
             )
         except httpx.HTTPStatusError as http_status_error:
